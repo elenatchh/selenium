@@ -11,5 +11,5 @@ time.sleep(5)
 
 champs_euro = driver.find_element(By.CLASS_NAME, "numberformat").send_keys('34')
 
-
+champs_euro = send_keys(Keys.RETURN)
 
