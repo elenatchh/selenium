@@ -1,6 +1,7 @@
 import time 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from bs4 import BeautifulSoup
 #from selenium.webdriver.common.keys import Keys
 #from selenium.webdriver.support import expected_conditions as EC
 
@@ -11,5 +12,5 @@ time.sleep(5)
 
 champs_euro = driver.find_element(By.CLASS_NAME, "numberformat").send_keys('34')
 
-champs_euro = send_keys(Keys.RETURN)
+#champs_euro = send_keys(Keys.RETURN)
 
