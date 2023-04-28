@@ -36,12 +36,17 @@ items = soup.find_all("div", {"class": "col-12 col-sm-6 product--description--co
 item = items[0]
 #type = clean_text(item.find('span').get_text(strip=True))
 #print(type)
+my_spans = items.find("span", recursive=False)
+for span in my_spans:
+    print(span)
 
-caract = []
-for item in items : 
-   type = clean_text(item.find('span').get_text(strip=True))
-   print(type)
-   #ans = clean_text(item.find('span').get_text(strip=True))
+#child et les recup dans un objet : premier enfant = clé deuxieme = valeur 
+
+#caract = []
+#for item in items : 
+#   type = clean_text(item.find('span').get_text(strip=True))
+#   print(type)
+#  ans = clean_text(item.find('span').get_text(strip=True))
 
    # produits = {
     #   "type" : type,
