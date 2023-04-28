@@ -3,8 +3,11 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from bs4 import BeautifulSoup
+import pandas as pd 
+from openpyxl.workbook import Workbook
 
 nb_armoir_looking = 120
+EXPORT_PATH = "./exports/"
 
 #------- load and sleep the scrap page 
 url = "https://eberhardt-pro.fr/cuisine-professionnelle/29-armoires-refrigerees?page=2"
@@ -61,7 +64,9 @@ for item in items :
         'code_art':  code_art
     }
     list_produits.append(produit)
-print(list_produits)
+#print(list_produits)
 #------- Send to CSV
 
-
+df = pd.DataFrame(list_produits)
+#print(df)
+df.to_excel(EXPORT_PATH + 'Armoires_Froides_ebe.xlsx', index=False)
