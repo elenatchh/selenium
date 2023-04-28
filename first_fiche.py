@@ -39,12 +39,16 @@ item = items[0]
 
 caract = []
 for item in items : 
-    type = clean_text(item.find('span').get_text(strip=True))
-    print(type)
+   type = clean_text(item.find('span').get_text(strip=True))
+   print(type)
+   #ans = clean_text(item.find('span').get_text(strip=True))
 
+   # produits = {
+    #   "type" : type,
+    #}
+    #print(caract.append(produits))
+#-------- Print to excel 
 
-#produits = {
-#        "title" : title,
-#        'ref':  ref,
-#    }
-#print(caract.append(produits))
+#df = pd.DataFrame(caract)
+#print(df)
+#df.to_excel(EXPORT_PATH + 'Fiche_produit1', index=False)
