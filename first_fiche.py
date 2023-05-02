@@ -34,30 +34,29 @@ for ref in soup.find('p',class_= "d-none") :
 #items = soup.find_all("div", {"class": "col-12 col-sm-6 product--description--content--item"})
 #print(len(items))
 
-div = soup.find('div', class_='mb-4 product--description--content--container')
+caract = []
+
+div = soup.find('div', class_='product--description--content')
 
 spans = div.find_all('span')
  
 
 for span in spans:
-    print(span.get_text(strip=True))
+    text = span.get_text(strip=True) # récupère le texte brut sans les balises HTML
 
-caract = []
+    produits = {
+      "type" : text, # stocke le texte brut dans le dictionnaire produits
+    }
+    caract.append(produits)
 
+#wb = Workbook()
+#sheet = wb.active
+#sheet.append(['carcateristique', text])
+#sheet.append(['Alice', 25])
+#sheet.append(['Bob', 30])
 
-#caract = []
-#for item in items : 
-#   type = clean_text(item.find('span').get_text(strip=True))
-#   print(type)
-#  ans = clean_text(item.find('span').get_text(strip=True))
+#wb.save('ficheproduit2.xlsx')
 
-   # produits = {
-    #   "type" : type,
-    #}
-    #print(caract.append(produits))
-
-#-------- Print to excel 
-
-#df = pd.DataFrame(caract)
+#df = pd.DataFrame(caract) # crée le DataFrame Pandas à partir de la liste caract contenant le texte brut
 #print(df)
-#df.to_excel(EXPORT_PATH + 'Fiche_produit1', index=False)
+#df.to_excel(EXPORT_PATH + 'Ficheproduit1.xlsx', index=False)

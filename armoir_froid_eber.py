@@ -69,4 +69,4 @@ for item in items :
 
 df = pd.DataFrame(list_produits)
 #print(df)
-df.to_excel(EXPORT_PATH + 'Armoires_Froides_ebe.xlsx', index=False)
+#df.to_excel(EXPORT_PATH + 'Armoires_Froides_ebe.xlsx', index=False)
