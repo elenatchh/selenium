@@ -30,17 +30,20 @@ for ref in soup.find('p',class_= "d-none") :
 
 
 #---------- Tab et Description du produit 
-items = soup.find_all("div", {"class": "col-12 col-sm-6 product--description--content--item"})
-#print(items)
 
-item = items[0]
-#type = clean_text(item.find('span').get_text(strip=True))
-#print(type)
-my_spans = items.find("span", recursive=False)
-for span in my_spans:
-    print(span)
+#items = soup.find_all("div", {"class": "col-12 col-sm-6 product--description--content--item"})
+#print(len(items))
 
-#child et les recup dans un objet : premier enfant = clé deuxieme = valeur 
+div = soup.find('div', class_='mb-4 product--description--content--container')
+
+spans = div.find_all('span')
+ 
+
+for span in spans:
+    print(span.get_text(strip=True))
+
+caract = []
+
 
 #caract = []
 #for item in items : 
@@ -52,6 +55,7 @@ for span in my_spans:
     #   "type" : type,
     #}
     #print(caract.append(produits))
+
 #-------- Print to excel 
 
 #df = pd.DataFrame(caract)
