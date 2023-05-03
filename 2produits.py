@@ -19,27 +19,27 @@ time.sleep(2)
 soup = BeautifulSoup(driver.page_source, 'html.parser')
 
 # trouve l'élément HTML contenant les liens des produits
-product_list = soup.find("div", {"class": "product-list"})
+product_list = soup.find("div", {"id": "js-product-list"})
 
 # extrait les liens des produits et stocke-les dans une liste
-product_links = []
-for link in product_list.find_all("a"):
-    product_links.append(link["href"])
+#product_links = []
+#for link in product_list.find_all("a"):
+#    product_links.append(link["href"])
 
 # imprime la liste des liens des produits
-print(product_links)
+#print(len(product_links))
 
 # trouve tous les liens de produits sur la page
-#product_links = driver.find_elements(By.XPATH, "//a[@class='product-link']")
+product_links = driver.find_elements(By.XPATH, "//a[@class='product-link']")
 
 # clique sur chaque lien de produit individuellement et récupère les informations
-#for link in product_links:
+for link in product_links:
     # clique sur le lien du produit
-#    link.click()
+    link.click()
 
     # récupère les informations du produit (à l'aide de BeautifulSoup)
     # ...
 
     # retourne à la page de la liste des produits
-#    driver.back()
+    driver.back()
 
