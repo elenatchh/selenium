@@ -6,16 +6,29 @@ from selenium.webdriver.common.by import By
 from bs4 import BeautifulSoup
 import pandas as pd 
 from openpyxl.workbook import Workbook
+from selenium.webdriver.common.proxy import *
 
-#choper un proxi 
-response = requests.get('https://free-proxy-list.net/')
-proxy_list = pd.read_html(response.text)[0]
-proxy_list["url"] = 'http://' + proxy_list["IP Adress"] + ":" + proxy_list["Port"].astype(str)
-proxy_list.head()
+#choper un proxi avec requests
+# response = requests.get('https://free-proxy-list.net/')
+# proxy_list = pd.read_html(response.text)[0]
+# proxy_list["url"] = 'http://' + proxy_list["IP Adress"] + ":" + proxy_list["Port"].astype(str)
+# proxy_list.head()
 
-https_proxies = proxy_list[proxy_list["https"] == 'yes']
-https_proxies.count()
+# https_proxies = proxy_list[proxy_list["https"] == 'yes']
+# https_proxies.count()
+# choper un proxi avec selenium 
+proxy_url = "192.168.68.129:443"
+proxy = Proxy ({
+    'proxyType': ProxyType.MANUAL,
+    'httpProxy': proxy_url,
+    'sslProxy': proxy_url,
+    'noProxy': ''})
 
+capabilities = webdriver.DesiredCapabilities.CHROME
+proxy.add_to_capabilities(capabilities)
+
+driver = webdriver.Chrome(desired_capabilities=capabilities)
+driver.get("https://free-proxy-list.net/")
 
 # EXPORT_PATH = "./exports/"
 
@@ -55,8 +68,6 @@ https_proxies.count()
 #     div = soup.find('div', class_='product--description--content')
 
 #     spans = div.find_all('span')
- 
-
 #     for span in spans:
 #         text = span.get_text(strip=True) # récupère le texte brut sans les balises HTML
 
