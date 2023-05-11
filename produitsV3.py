@@ -44,20 +44,24 @@ for link in product_links:
             time.sleep(2)
             #récupère les informations du produit (à l'aide de BeautifulSoup)
             soup = BeautifulSoup(driver.page_source, 'html.parser')
-
+            title = 
             div = soup.find('div', class_='product--description--content')
-
+            
             spans = div.find_all('span')
-            print(spans)
             text = ""
             for span in spans:
                 text += span.get_text(strip=True) + " " # récupère le texte brut sans les balises HTML
-
+            
             produits = {
-              "type" : text, # stocke le texte brut dans le dictionnaire produits
+              "title" : title,
+              "type" : text,
+               # stocke le texte brut dans le dictionnaire produits
             }
             caract.append(produits)
-
+            #print(produits)
+            df = pd.DataFrame(caract)
+            print(df)
+            #df.to_excel(EXPORT_PATH + 'Armoires_Froides_ebe.xlsx', index=False)
             #retourne à la page de la liste des produits
             driver.back()
             break
@@ -67,8 +71,8 @@ for link in product_links:
     if retries == max_retries:
         print(f"Failed to get link {link}")
 
-df = pd.DataFrame(caract)
-print(df)
+#df = pd.DataFrame(caract)
+#print(df)
 #df.to_excel(EXPORT_PATH + 'Armoires_Froides_ebe.xlsx', index=False)
 
 driver.quit()
