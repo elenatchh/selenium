@@ -25,17 +25,22 @@ for link in product_links:
     response = requests.get(link, headers=headers)
     soup = BeautifulSoup(response.text, 'html.parser')
 
-    # Récupérer le nom et la description du produit
+    # Récupérer le nom et la description du produit et plus 
     name = soup.find('h1', class_='h1').text.strip()
+    ref = soup.find('p', class_='d-none').text.strip()
     description = soup.find('div', class_='product--description--content').text.strip()
+    priceht = soup.find('div', class_='current-price').text.strip()
+    prixachat = int(priceht) * 0,70 
+
 
     # Ajouter le produit à la liste des produits
-    products.append({'Nom': name, 'Description': description})
+    products.append({'Nom': name, 'Référence': ref, 'Description': description, 'Price HT': priceht, "Prix achat" : prixachat})
 
 # Créer un DataFrame pandas à partir de la liste des produits
     df = pd.DataFrame(products)
+    print(df)
 
 # Exporter le DataFrame dans un fichier Excel
-    df.to_excel(EXPORT_PATH + 'test.xlsx', index=False)
+    #df.to_excel(EXPORT_PATH + 'test.xlsx', index=False)
 
     print("Export terminé !")
