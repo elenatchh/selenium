@@ -21,18 +21,19 @@ for proxy_url in proxies_to_test:
         'sslProxy': proxy_url
     })
 
-    # Créer les options pour Chrome avec le proxy configuré
+    # Créer les options pour Chrome avec le proxy configuré et la navigation headless activée
     chrome_options = webdriver.ChromeOptions()
+    #chrome_options.add_argument('--headless')
     proxy.add_to_capabilities(chrome_options.to_capabilities())
 
-    # Créer le navigateur Chrome avec les options de proxy
+    # Créer le navigateur Chrome avec les options de proxy et de navigation headless
     s=Service('./chromedriver')
     driver = webdriver.Chrome(options=chrome_options, service=s)
 
     # Ouvrir https://httpbin.org/ip pour vérifier le proxy
     try:
         driver.get("https://httpbin.org/ip")
-        ip = driver.find_element_by_xpath('//pre').text
+        ip = driver.find_element_by_xpath('//pre').get_text(strip="True")
         print(f"Proxy {proxy_url} returned IP address: {ip}")
     except Exception as e:
         print(f"Error with proxy {proxy_url}: {str(e)}")

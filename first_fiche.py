@@ -57,6 +57,6 @@ for span in spans:
 
 #wb.save('ficheproduit2.xlsx')
 
-#df = pd.DataFrame(caract) # crée le DataFrame Pandas à partir de la liste caract contenant le texte brut
-#print(df)
+df = pd.DataFrame(caract) # crée le DataFrame Pandas à partir de la liste caract contenant le texte brut
+print(df)
 #df.to_excel(EXPORT_PATH + 'Ficheproduit1.xlsx', index=False)

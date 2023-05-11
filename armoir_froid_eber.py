@@ -21,24 +21,6 @@ time.sleep(2)
 
 soup = BeautifulSoup(driver.page_source, 'html.parser')
 
-
-#------- find the H2 on the page 
-#for h2 in soup.findAll('h2',class_= "h6 product-title mt-2") : 
-#   print(h2.get_text(strip=True))
-
-#------- Load other pages (next pages) and take the others H2
-
-#nb_click = nb_armoir_looking / 30 - 1 if h2 >= int(nb_armoir_looking) else h2 / 30 #pour linstant ça c'est faut car on recupere pas un numéro
-#nb_click
-#for i in range(0, int(nb_click)): 
-#    button_next30 = driver.find_element(By.CLASS_NAME('material-icons'))
-   # button_next30.click() -> js to execute the click 
-#    driver.execute_script('arguments[0]', button_next30)
-#    time.sleep(2)
- 
-#soup = BeautifulSoup(driver.page_source, 'html.parser') #MAJ of the new code 
-#driver.quit()
- #------- retrieve  one item
 def clean_text(str):
     return str.replace('\n', " ").replace('\t', " ")
 
@@ -68,5 +50,5 @@ for item in items :
 #------- Send to CSV
 
 df = pd.DataFrame(list_produits)
-#print(df)
+print(df)
 #df.to_excel(EXPORT_PATH + 'Armoires_Froides_ebe.xlsx', index=False)
